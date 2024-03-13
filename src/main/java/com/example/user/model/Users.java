@@ -1,31 +1,63 @@
 package com.example.user.model;
 
+import java.util.List;
+
+
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="users")
 public class Users {
 	@Id
 	@GeneratedValue
-	private int id;
+	private int userid;
 	private String name;
+	private String designation;
 	private String email;
 	private String phoneno;
 	private String password;
-	private String confirmpassword;
 	
-	public int getId() {
-		return id;
+//	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
+//	private List<Address> Address;
+//	
+//	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
+//	private List<Bank> Bank;	
+//	
+//	public List<Address> getAddress() {
+//		return Address;
+//	}
+//	public void setAddress(List<Address> address) {
+//		Address = address;
+//	}
+//	public List<Bank> getBank() {
+//		return Bank;
+//	}
+//	public void setBank(List<Bank> bank) {
+//		Bank = bank;
+//	}
+	public int getUserid() {
+		return userid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getDesignation() {
+		return designation;
+	}
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
 	public String getEmail() {
 		return email;
@@ -44,12 +76,6 @@ public class Users {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public String getConfirmpassword() {
-		return confirmpassword;
-	}
-	public void setConfirmpassword(String confirmpassword) {
-		this.confirmpassword = confirmpassword;
 	}
 	
 }

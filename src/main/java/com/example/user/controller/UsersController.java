@@ -16,9 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.user.model.Address;
+import com.example.user.model.Bank;
 //import com.example.user.model.Address;
 //import com.example.user.model.Bank;
 import com.example.user.model.Users;
+import com.example.user.repo.AddressRepo;
+import com.example.user.repo.BankRepo;
 ////import com.example.user.repo.AddressRepo;
 //import com.example.user.repo.BankRepo;
 import com.example.user.repo.UsersRepo;
@@ -29,10 +33,10 @@ import com.example.user.repo.UsersRepo;
 public class UsersController {
 	@Autowired
 	private UsersRepo usersRepo;
-//	@Autowired
-//	private AddressRepo addressRepo;
-//	@Autowired
-//	private BankRepo bankRepo;
+	@Autowired
+	private AddressRepo addressRepo;
+	@Autowired
+	private BankRepo bankRepo;
 	
 	@PostMapping("/set")
 	public ResponseEntity<?> setuser(@RequestBody Users users) {
@@ -79,29 +83,28 @@ public class UsersController {
 				
 	}
 	
-//	@PostMapping("/setaddress/{User_id}")
-//	public ResponseEntity<?> setaddress(@RequestBody Address address, @PathVariable int id) {
-//	
-//		
-//		Users user = usersRepo.findById(id).get();
-//		
-//		user.getAddress().add(address);
-//		usersRepo.save(address);
-//		return ResponseEntity.status(HttpStatus.OK)
-//				.body(user);
-//	}
+	@PostMapping("/setaddress/{User_id}")
+	public ResponseEntity<?> setaddress(@RequestBody Address address, @PathVariable int id) {
 	
-//	@PostMapping("/setbank/{User_id}")
-//	public ResponseEntity<?> setaddress(@RequestBody Bank bank, @PathVariable int id) {
-//	
-//		
-//		Users user = usersRepo.findById(id).get();
-//		
-//		user.getBank().add(bank);
-//		usersRepo.save(bank);
-//		return ResponseEntity.status(HttpStatus.OK)
-//				.body(user);
-//	}
+		
+		Users user = usersRepo.findById(id).get();
+		
+		user.getAddress().add(address);
+		usersRepo.save(address);
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(user);
+	}
+	
+	@PostMapping("/setbank/{User_id}")
+	public ResponseEntity<?> setbank(@RequestBody Bank bank, @PathVariable int id) {
+			
+		Users user = usersRepo.findById(id).get();
+		
+	user.getBank().add(bank);
+		usersRepo.save(bank);
+	return ResponseEntity.status(HttpStatus.OK)
+				.body(user);
+		}
 	
 	@PostMapping("/update/{id}")
 	public ResponseEntity<?> updateStudent(@RequestBody Users users, @PathVariable int id ){

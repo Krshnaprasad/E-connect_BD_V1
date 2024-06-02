@@ -23,24 +23,24 @@ public class Users {
 	private String phoneno;
 	private String password;
 	
-//	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
-//	private List<Address> Address;
-//	
-//	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
-//	private List<Bank> Bank;	
-//	
-//	public List<Address> getAddress() {
-//		return Address;
-//	}
-//	public void setAddress(List<Address> address) {
-//		Address = address;
-//	}
-//	public List<Bank> getBank() {
-//		return Bank;
-//	}
-//	public void setBank(List<Bank> bank) {
-//		Bank = bank;
-//	}
+	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
+	private List<Address> Address;
+	
+	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
+	private List<Bank> Bank;	
+	
+	public List<Address> getAddress() {
+		return Address;
+	}
+	public void setAddress(List<Address> address) {
+		Address = address;
+	}
+	public List<Bank> getBank() {
+		return Bank;
+	}
+	public void setBank(List<Bank> bank) {
+		Bank = bank;
+	}
 	public int getUserid() {
 		return userid;
 	}
@@ -77,5 +77,7 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
 	
 }

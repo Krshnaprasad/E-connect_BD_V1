@@ -17,9 +17,6 @@ public interface UsersRepo extends JpaRepository<Users, Integer> {
 	@Query(value= "select * from Users where  name = :name AND password = :password", nativeQuery = true)
 	Users findUser(String name, String password);
 
-	void save(Address address);
-
-	void save(Bank bank);
 
 	
 

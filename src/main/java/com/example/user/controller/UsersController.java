@@ -56,17 +56,6 @@ public class UsersController {
 				.body(use);
 	}
 	
-	@GetMapping("/delete/{id}")
-	public ResponseEntity<?> deleteUser(@PathVariable int id){
-		
-		Users use = usersRepo.findById(id).get();
-		
-		usersRepo.delete(use);
-		
-		return ResponseEntity.status(HttpStatus.OK)
-				.body(use);
-	}
-	
 	@PostMapping("/check")
 	public ResponseEntity<?> validateUser(@RequestBody Users user) {
 		
@@ -83,29 +72,6 @@ public class UsersController {
 				
 	}
 	
-	@PostMapping("/setaddress/{User_id}")
-	public ResponseEntity<?> setaddress(@RequestBody Address address, @PathVariable int id) {
-	
-		
-		Users user = usersRepo.findById(id).get();
-		
-		user.getAddress().add(address);
-		usersRepo.save(address);
-		return ResponseEntity.status(HttpStatus.OK)
-				.body(user);
-	}
-	
-	@PostMapping("/setbank/{User_id}")
-	public ResponseEntity<?> setbank(@RequestBody Bank bank, @PathVariable int id) {
-			
-		Users user = usersRepo.findById(id).get();
-		
-	user.getBank().add(bank);
-		usersRepo.save(bank);
-	return ResponseEntity.status(HttpStatus.OK)
-				.body(user);
-		}
-	
 	@PostMapping("/update/{id}")
 	public ResponseEntity<?> updateStudent(@RequestBody Users users, @PathVariable int id ){
 		Users user = usersRepo.findById(id).get();
@@ -114,4 +80,15 @@ public class UsersController {
 		return ResponseEntity.status(HttpStatus.OK)
 		.body(user);
 }
+	
+	@GetMapping("/delete/{id}")
+	public ResponseEntity<?> deleteUser(@PathVariable int id){
+		
+		Users use = usersRepo.findById(id).get();
+		
+		usersRepo.delete(use);
+		
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(use);
+	}
 }

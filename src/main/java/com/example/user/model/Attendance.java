@@ -1,10 +1,13 @@
 package com.example.user.model;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -22,15 +25,16 @@ public class Attendance {
 	private String lop;
 	private String month_salary;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="salary_id")
-	private Salary salary;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Salary> salary;
 	
 
-	public Salary getSalary() {
+	
+	
+	public List<Salary> getSalary() {
 		return salary;
 	}
-	public void setSalary(Salary salary) {
+	public void setSalary(List<Salary> salary) {
 		this.salary = salary;
 	}
 	public int getAttendid() {

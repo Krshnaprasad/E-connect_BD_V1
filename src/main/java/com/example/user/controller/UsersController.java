@@ -44,8 +44,9 @@ public class UsersController {
 		Users use = usersRepo.save(users);
 		
 		return ResponseEntity.status(HttpStatus.OK)
-				.body(use);
+				.body(users);
 	}
+	
 	@GetMapping("/get")
 	public ResponseEntity<?> getUser() {
 		
@@ -77,7 +78,7 @@ public class UsersController {
 		Users user = usersRepo.findById(id).get();
 		
 		usersRepo.save(users);
-		return ResponseEntity.status(HttpStatus.OK)
+ 		return ResponseEntity.status(HttpStatus.OK)
 		.body(user);
 }
 	

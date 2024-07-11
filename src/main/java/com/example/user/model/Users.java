@@ -8,6 +8,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -22,12 +23,19 @@ public class Users {
 	private String email;
 	private String phoneno;
 	private String password;
+	private String confirmpassword;
 	
-	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
+	@ManyToMany( cascade = CascadeType.ALL)
 	private List<Address> Address;
 	
-	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
+	@ManyToMany( cascade = CascadeType.ALL)
 	private List<Bank> Bank;	
+	
+	@ManyToMany( cascade = CascadeType.ALL)
+	private List<Attendance> attendance;
+	
+	@ManyToMany( cascade = CascadeType.ALL)
+	private List<Salary> salary;
 	
 	public List<Address> getAddress() {
 		return Address;
@@ -40,6 +48,21 @@ public class Users {
 	}
 	public void setBank(List<Bank> bank) {
 		Bank = bank;
+		
+	}
+	
+	
+	public List<Attendance> getAttendance() {
+		return attendance;
+	}
+	public void setAttendance(List<Attendance> attendance) {
+		this.attendance = attendance;
+	}
+	public List<Salary> getSalary() {
+		return salary;
+	}
+	public void setSalary(List<Salary> salary) {
+		this.salary = salary;
 	}
 	public int getUserid() {
 		return userid;
@@ -76,6 +99,12 @@ public class Users {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getConfirmpassword() {
+		return confirmpassword;
+	}
+	public void setConfirmpassword(String confirmpassword) {
+		this.confirmpassword = confirmpassword;
 	}
 	
 	

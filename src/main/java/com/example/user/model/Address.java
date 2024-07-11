@@ -2,11 +2,14 @@ package com.example.user.model;
 
 
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -23,9 +26,8 @@ public class Address {
 	private String location;
 	private String pincode;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="user_id")
-	private Users users;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Users> users;
 
 	public int getAddressid() {
 		return addressid;
@@ -67,11 +69,11 @@ public class Address {
 		this.pincode = pincode;
 	}
 
-	public Users getUsers() {
+	public List<Users> getUsers() {
 		return users;
 	}
 
-	public void setUsers(Users users) {
+	public void setUsers(List<Users> users) {
 		this.users = users;
 	}
 

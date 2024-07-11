@@ -1,7 +1,6 @@
 package com.example.user.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,43 +13,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.user.model.Attendance;
-import com.example.user.model.Bank;
+import com.example.user.model.Salary;
 import com.example.user.model.Users;
-import com.example.user.repo.BankRepo;
+import com.example.user.repo.SalaryRepo;
 import com.example.user.repo.UsersRepo;
 
 @RestController
-@RequestMapping("/bank")
-public class BankController {
+@RequestMapping("/salary")
+public class SalaryController {
 	
 	@Autowired
-	public BankRepo bankRepo;
+	private SalaryRepo salaryRepo;
 	
 	@Autowired
 	public UsersRepo userRepo;
 	
 	@PostMapping("/set/{userid}")
-	public ResponseEntity<?> setuser(@RequestBody Bank bank , @PathVariable int userid) {
+	public ResponseEntity<?> setuser(@RequestBody Salary salary, @PathVariable int userid) {
 	
-//		Bank bankdetail = bankRepo.save(bank);
-		
 		Users users = userRepo.findById(userid).get();
-		users.getBank().add(bank);
-		
+		users.getSalary().add(salary);
 		userRepo.save(users);
 		
 		return ResponseEntity.status(HttpStatus.OK)
-				.body(bank);
+				.body(salary);
 	}
 	
 	@GetMapping("/get")
 	public ResponseEntity<?> getUser() {
 		
 		
-		List<Bank> bank = bankRepo.findAll();
+		List<Salary> sal = salaryRepo.findAll();
 		
 		return ResponseEntity.status(HttpStatus.OK)
-				.body(bank);
+				.body(sal);
 	}
 
 }

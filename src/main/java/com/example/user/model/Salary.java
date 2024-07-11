@@ -1,8 +1,12 @@
 package com.example.user.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -21,8 +25,8 @@ public class Salary {
 	private String esi;
 	private String overall_salary;
 		
-	@OneToOne(mappedBy = "salary")
-	private Attendance attendance;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Attendance> attendance;
 
 	public int getSalaryid() {
 		return salaryid;
@@ -88,11 +92,13 @@ public class Salary {
 		this.overall_salary = overall_salary;
 	}
 
-	public Attendance getAttendance() {
+	public List<Attendance> getAttendance() {
 		return attendance;
 	}
 
-	public void setAttendance(Attendance attendance) {
+	public void setAttendance(List<Attendance> attendance) {
 		this.attendance = attendance;
 	}
+
+	
 }

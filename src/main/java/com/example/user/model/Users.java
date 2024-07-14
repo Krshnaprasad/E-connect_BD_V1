@@ -37,6 +37,9 @@ public class Users {
 	@ManyToMany( cascade = CascadeType.ALL)
 	private List<Salary> salary;
 	
+	  @ManyToMany( cascade = CascadeType.ALL)
+	    private List<CheckInOut> checkInOut;
+	
 	public List<Address> getAddress() {
 		return Address;
 	}
@@ -105,6 +108,12 @@ public class Users {
 	}
 	public void setConfirmpassword(String confirmpassword) {
 		this.confirmpassword = confirmpassword;
+	}
+	public List<CheckInOut> getCheckInOut() {
+		return checkInOut;
+	}
+	public void setCheckInOut(List<CheckInOut> checkInOut) {
+		this.checkInOut = checkInOut;
 	}
 	
 	
